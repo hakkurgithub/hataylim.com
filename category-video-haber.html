@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Haber - Hataylım</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="description" content="Hatay'dan video haberler, röportajlar ve belgesel içerikler. Görsel habercilik anlayışı ile Hatay'ın nabzını tutuyoruz.">
+    <style>
+        /* Video Haber Category Specific Styles */
+        .video-player {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .video-placeholder {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: scale(1.02);
+        }
+
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #e83e8c;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .video-play-btn {
+            background: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .video-content {
+            padding: 20px;
+        }
+
+        .video-card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            color: #333;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .video-views {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .featured-video-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(90deg, #e83e8c 0%, transparent 100%);
+        }
+
+        .video-category-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .video-cat-btn {
+            padding: 12px 24px;
+            background: #f8f9fa;
+            color: #666;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-cat-btn:hover,
+        .video-cat-btn.active {
+            background: #e83e8c;
+            color: white;
+            border-color: #e83e8c;
+            transform: translateY(-2px);
+        }
+
+        .video-sidebar-widget {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .video-widget-title {
+            background: #e83e8c;
+            color: white;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .trending-video {
+            display: flex;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+
+        .trending-video:hover {
+            background: #f8f9fa;
+        }
+
+        .trending-video:last-child {
+            border-bottom: none;
+        }
+
+        .trending-video-thumb {
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            margin-right: 15px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .trending-video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .trending-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25px;
+            height: 25px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: #e83e8c;
+        }
+
+        .trending-video-info h4 {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .trending-video-meta {
+            font-size: 0.7rem;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-category-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .video-cat-btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+            
+            .video-placeholder {
+                height: 300px;
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-placeholder {
+                height: 250px;
+                font-size: 2.5rem;
+            }
+            
+            .video-overlay {
+                padding: 20px;
+            }
+            
+            .video-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-newspaper"></i> Hataylım Gazetesi</h1>
+                    <p class="tagline">Bağımsız Türk Basını - Hatay'ın Sesi</p>
+                </div>
+                <div class="header-info">
+                    <div class="date-weather">
+                        <span id="current-date"></span>
+                        <span class="weather">
+                            <i class="fas fa-sun"></i> 24°C Hatay
+                        </span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="category-index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="category-siyaset.html"><i class="fas fa-landmark"></i> Siyaset</a></li>
+                <li><a href="category-spor.html"><i class="fas fa-futbol"></i> Spor</a></li>
+                <li><a href="category-ozel-haber.html"><i class="fas fa-star"></i> Özel Haber</a></li>
+                <li><a href="category-sanat.html"><i class="fas fa-palette"></i> Sanat</a></li>
+                <li><a href="category-genel.html"><i class="fas fa-globe"></i> Genel</a></li>
+                <li><a href="category-video-haber.html" class="active"><i class="fas fa-video"></i> Video Haber</a></li>
+                <li><a href="category-basarili-hataylilar.html"><i class="fas fa-award"></i> Başarılı Hataylılar</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Category Header -->
+    <section class="category-header" style="background: linear-gradient(135deg, #e83e8c 0%, #dc3545 100%); color: white; padding: 40px 0; text-align: center;">
+        <div class="container">
+            <div style="margin-bottom: 15px;">
+                <a href="category-index.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">Ana Sayfa</a>
+                <span style="margin: 0 10px;">></span>
+                <span>Video Haber</span>
+            </div>
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">
+                <i class="fas fa-video"></i> Video Haber
+            </h1>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Hatay'dan görsel haberler ve röportajlar</p>
+        </div>
+    </section>
+
+    <!-- Video Categories Filter -->
+    <section style="background: #f8f9fa; padding: 20px 0;">
+        <div class="container">
+            <div class="video-category-nav">
+                <button class="video-cat-btn active" onclick="filterVideos('all')">
+                    <i class="fas fa-th-large"></i> Tümü
+                </button>
+                <button class="video-cat-btn" onclick="filterVideos('news')">
+                    <i class="fas fa-newspaper"></i> Haber
+                </button>
+                <button class="video-cat-btn" onclick="filterVideos('interview')">
+                    <i class="fas fa-microphone"></i> Röportaj
+                </button>
+                <button class="video-cat-btn" onclick="filterVideos('documentary')">
+                    <i class="fas fa-film"></i> Belgesel
+                </button>
+                <button class="video-cat-btn" onclick="filterVideos('live')">
+                    <i class="fas fa-broadcast-tower"></i> Canlı
+                </button>
+                <button class="video-cat-btn" onclick="filterVideos('event')">
+                    <i class="fas fa-calendar-check"></i> Etkinlik
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Main Content Area -->
+                <div class="content-main">
+                    <!-- Featured Video -->
+                    <section class="featured-video-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-star"></i> Öne Çıkan Video
+                        </h2>
+                        <div class="video-player">
+                            <div class="video-placeholder" onclick="playFeaturedVideo()">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="video-overlay">
+                                <div class="video-title">Hatay Mutfağının UNESCO Yolculuğu</div>
+                                <div class="video-meta">
+                                    <span><i class="fas fa-calendar"></i> 15 Kasım 2024</span>
+                                    <span><i class="fas fa-eye"></i> 15.642 görüntüleme</span>
+                                    <span><i class="fas fa-clock"></i> 12:45</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Recent Videos -->
+                    <section>
+                        <h2 class="section-title">
+                            <i class="fas fa-clock"></i> Son Video Haberler
+                        </h2>
+                        <div class="video-grid" id="videoGrid">
+                            <!-- Video 1 -->
+                            <div class="video-card" data-category="news">
+                                <div class="video-thumbnail">
+                                    <img src="https://via.placeholder.com/300x200?text=Antakya+Belediyesi" alt="Antakya Belediyesi">
+                                    <div class="video-play-btn"><i class="fas fa-play"></i></div>
+                                    <div class="video-duration">05:30</div>
+                                </div>
+                                <div class="video-content">
+                                    <h3 class="video-card-title">Antakya Belediyesi Meclis Toplantısı Canlı Yayını</h3>
+                                    <p class="video-description">Büyükşehir Belediye Meclisi'nin aylık olağan toplantısında önemli kararlar görüşüldü...</p>
+                                    <div class="video-stats">
+                                        <div class="video-views">
+                                            <i class="fas fa-eye"></i>
+                                            <span>2.341</span>
+                                        </div>
+                                        <div class="video-date">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>2 saat önce</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video 2 -->
+                            <div class="video-card" data-category="interview">
+                                <div class="video-thumbnail">
+                                    <img src="https://via.placeholder.com/300x200?text=Hatayspor+Röportaj" alt="Hatayspor Röportajı">
+                                    <div class="video-play-btn"><i class="fas fa-play"></i></div>
+                                    <div class="video-duration">08:15</div>
+                                </div>
+                                <div class="video-content">
+                                    <h3 class="video-card-title">Hatayspor Teknik Direktörü ile Özel Röportaj</h3>
+                                    <p class="video-description">Takımın hedefleri, transfer politikaları ve gelecek planları hakkında samimi bir sohbet...</p>
+                                    <div class="video-stats">
+                                        <div class="video-views">
+                                            <i class="fas fa-eye"></i>
+                                            <span>5.678</span>
+                                        </div>
+                                        <div class="video-date">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>5 saat önce</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video 3 -->
+                            <div class="video-card" data-category="documentary">
+                                <div class="video-thumbnail">
+                                    <img src="https://via.placeholder.com/300x200?text=Hatay+Tarihi" alt="Hatay Tarihi">
+                                    <div class="video-play-btn"><i class="fas fa-play"></i></div>
+                                    <div class="video-duration">25:40</div>
+                                </div>
+                                <div class="video-content">
+                                    <h3 class="video-card-title">Hatay'ın Tarihî Yolculuğu - Bölüm 1</h3>
+                                    <p class="video-description">Antik çağlardan günümüze Hatay'ın zengin tarihini keşfeden belgesel serinin ilk bölümü...</p>
+                                    <div class="video-stats">
+                                        <div class="video-views">
+                                            <i class="fas fa-eye"></i>
+                                            <span>12.456</span>
+                                        </div>
+                                        <div class="video-date">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>1 gün önce</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video 4 -->
+                            <div class="video-card" data-category="event">
+                                <div class="video-thumbnail">
+                                    <img src="https://via.placeholder.com/300x200?text=Festival+Hatay" alt="Hatay Festivali">
+                                    <div class="video-play-btn"><i class="fas fa-play"></i></div>
+                                    <div class="video-duration">15:20</div>
+                                </div>
+                                <div class="video-content">
+                                    <h3 class="video-card-title">Hatay Kültür ve Sanat Festivali Açılış Töreni</h3>
+                                    <p class="video-description">Şehrin en büyük kültürel etkinliği olan festivalin renkli açılış töreninden özel görüntüler...</p>
+                                    <div class="video-stats">
+                                        <div class="video-views">
+                                            <i class="fas fa-eye"></i>
+                                            <span>8.234</span>
+                                        </div>
+                                        <div class="video-date">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>2 gün önce</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video 5 -->
+                            <div class="video-card" data-category="news">
+                                <div class="video-thumbnail">
+                                    <img src="https://via.placeholder.com/300x200?text=İskenderun+Liman" alt="İskenderun Limanı">
+                                    <div class="video-play-btn"><i class="fas fa-play"></i></div>
+                                    <div class="video-duration">07:45</div>
+                                </div>
+                                <div class="video-content">
+                                    <h3 class="video-card-title">İskenderun Limanı'nda Yeni Yatırımlar</h3>
+                                    <p class="video-description">Türkiye'nin önemli liman şehirlerinden İskenderun'da gerçekleşen büyük yatırım projeleri...</p>
+                                    <div class="video-stats">
+                                        <div class="video-views">
+                                            <i class="fas fa-eye"></i>
+                                            <span>3.789</span>
+                                        </div>
+                                        <div class="video-date">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>3 gün önce</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Video 6 -->
+                            <div class="video-card" data-category="interview">
+                                <div class="video-thumbnail">
+                                    <img src="https://via.placeholder.com/300x200?text=Sanatçı+Röportajı" alt="Sanatçı Röportajı">
+                                    <div class="video-play-btn"><i class="fas fa-play"></i></div>
+                                    <div class="video-duration">12:30</div>
+                                </div>
+                                <div class="video-content">
+                                    <h3 class="video-card-title">Hatay'ın Ünlü Sanatçısı ile Samimi Sohbet</h3>
+                                    <p class="video-description">Hatay'dan çıkıp Türkiye'ye nam salan ünlü sanatçımızla sanat hayatı üzerine keyifli bir sohbet...</p>
+                                    <div class="video-stats">
+                                        <div class="video-views">
+                                            <i class="fas fa-eye"></i>
+                                            <span>6.542</span>
+                                        </div>
+                                        <div class="video-date">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>4 gün önce</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Load More Button -->
+                    <div class="load-more">
+                        <button type="button" class="load-more-btn" onclick="loadMoreVideos()">
+                            <i class="fas fa-refresh"></i> Daha Fazla Video Yükle
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Trending Videos -->
+                    <div class="video-sidebar-widget">
+                        <h3 class="video-widget-title">
+                            <i class="fas fa-fire"></i> Trend Videolar
+                        </h3>
+                        <div class="trending-videos">
+                            <div class="trending-video">
+                                <div class="trending-video-thumb">
+                                    <img src="https://via.placeholder.com/80x60?text=Video+1" alt="Trending Video">
+                                    <div class="trending-play-btn"><i class="fas fa-play"></i></div>
+                                </div>
+                                <div class="trending-video-info">
+                                    <h4>Hatay Mutfağının UNESCO Yolculuğu</h4>
+                                    <div class="trending-video-meta">15.642 görüntüleme • 1 gün önce</div>
+                                </div>
+                            </div>
+                            
+                            <div class="trending-video">
+                                <div class="trending-video-thumb">
+                                    <img src="https://via.placeholder.com/80x60?text=Video+2" alt="Trending Video">
+                                    <div class="trending-play-btn"><i class="fas fa-play"></i></div>
+                                </div>
+                                <div class="trending-video-info">
+                                    <h4>Hatay'ın Tarihî Yolculuğu</h4>
+                                    <div class="trending-video-meta">12.456 görüntüleme • 2 gün önce</div>
+                                </div>
+                            </div>
+                            
+                            <div class="trending-video">
+                                <div class="trending-video-thumb">
+                                    <img src="https://via.placeholder.com/80x60?text=Video+3" alt="Trending Video">
+                                    <div class="trending-play-btn"><i class="fas fa-play"></i></div>
+                                </div>
+                                <div class="trending-video-info">
+                                    <h4>Kültür Festivali Açılış Töreni</h4>
+                                    <div class="trending-video-meta">8.234 görüntüleme • 3 gün önce</div>
+                                </div>
+                            </div>
+                            
+                            <div class="trending-video">
+                                <div class="trending-video-thumb">
+                                    <img src="https://via.placeholder.com/80x60?text=Video+4" alt="Trending Video">
+                                    <div class="trending-play-btn"><i class="fas fa-play"></i></div>
+                                </div>
+                                <div class="trending-video-info">
+                                    <h4>Sanatçı Röportajı</h4>
+                                    <div class="trending-video-meta">6.542 görüntüleme • 4 gün önce</div>
+                                </div>
+                            </div>
+                            
+                            <div class="trending-video">
+                                <div class="trending-video-thumb">
+                                    <img src="https://via.placeholder.com/80x60?text=Video+5" alt="Trending Video">
+                                    <div class="trending-play-btn"><i class="fas fa-play"></i></div>
+                                </div>
+                                <div class="trending-video-info">
+                                    <h4>Hatayspor Teknik Direktör Röportajı</h4>
+                                    <div class="trending-video-meta">5.678 görüntüleme • 5 gün önce</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Stats -->
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-chart-line"></i> Video İstatistikleri
+                        </h3>
+                        <div style="padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                <span>Toplam Video:</span>
+                                <strong style="color: #e83e8c;">127</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                <span>Bu Hafta:</span>
+                                <strong>8</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                <span>Toplam İzlenme:</span>
+                                <strong>2.1M</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>En Popüler Kategori:</span>
+                                <strong style="color: #e83e8c;">Haber</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Categories Widget -->
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-folder-open"></i> Video Kategorileri
+                        </h3>
+                        <ul class="category-list">
+                            <li><a href="#" onclick="filterVideos('news')">Haber Videoları <span>(45)</span></a></li>
+                            <li><a href="#" onclick="filterVideos('interview')">Röportajlar <span>(32)</span></a></li>
+                            <li><a href="#" onclick="filterVideos('documentary')">Belgeseller <span>(18)</span></a></li>
+                            <li><a href="#" onclick="filterVideos('event')">Etkinlikler <span>(22)</span></a></li>
+                            <li><a href="#" onclick="filterVideos('live')">Canlı Yayınlar <span>(10)</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="widget newsletter-widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-video"></i> Video Bülteni
+                        </h3>
+                        <p>Yeni video haberleri kaçırmayın!</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="E-mail adresiniz..." required>
+                            <button type="submit">Abone Ol</button>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hataylım Hakkında</h3>
+                    <p>Hatay'ın güvenilir haber kaynağı olarak, doğru ve tarafsız haberleri sizlere ulaştırmak için çalışıyoruz.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Video Kategoriler</h3>
+                    <ul>
+                        <li><a href="#" onclick="filterVideos('news')">Haber Videoları</a></li>
+                        <li><a href="#" onclick="filterVideos('interview')">Röportajlar</a></li>
+                        <li><a href="#" onclick="filterVideos('documentary')">Belgeseller</a></li>
+                        <li><a href="#" onclick="filterVideos('event')">Etkinlikler</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>İletişim</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> goruntumedya@gmail.com</p>
+                        <p><i class="fas fa-envelope"></i> info@hataylim.com</p>
+                        <p><i class="fab fa-whatsapp"></i> +90 552 424 84 48</p>
+                        <p style="margin-top: 10px;"><strong>İstanbul:</strong></p>
+                        <p style="font-size: 0.9rem;">Emekyemez Mah. Yanıkkapı Sok. No.15 Karaköy/İstanbul</p>
+                        <p style="margin-top: 10px;"><strong>Hatay:</strong></p>
+                        <p style="font-size: 0.9rem;">Kurtuluş Mah. 67. Sk. Karaoğlan Psj. No.16 İskenderun</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Banka Bilgileri</h3>
+                    <div class="contact-info">
+                        <p><strong>Hesap Sahibi:</strong></p>
+                        <p>Erdahan POLAT</p>
+                        <p style="margin-top: 10px;"><strong>Banka:</strong> VAKIFBANK</p>
+                        <p style="margin-top: 5px;"><strong>İBAN:</strong></p>
+                        <p style="font-size: 0.85rem; word-break: break-all;">TR90 0001 5001 5800 7312 5190 86</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Yasal</h3>
+                    <ul>
+                        <li><a href="#">Gizlilik Politikası</a></li>
+                        <li><a href="#">Kullanım Şartları</a></li>
+                        <li><a href="#">İletişim</a></li>
+                        <li><a href="#">Hakkımızda</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hataylım. Tüm hakları saklıdır. Bu site eğitim amaçlı oluşturulmuştur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Video Category Filter Functions
+        function filterVideos(category) {
+            const videoCards = document.querySelectorAll('.video-card');
+            const categoryButtons = document.querySelectorAll('.video-cat-btn');
+            
+            // Update active button
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter videos
+            videoCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Play Featured Video Function
+        function playFeaturedVideo() {
+            alert('Video oynatılacak... (Demo amaçlı)');
+            // Bu fonksiyon gerçek video player entegrasyonu ile değiştirilebilir
+        }
+
+        // Load More Videos Function
+        function loadMoreVideos() {
+            const videoGrid = document.getElementById('videoGrid');
+            
+            // Simulate loading more videos
+            const newVideos = [
+                {
+                    category: 'news',
+                    title: 'Hatay Büyükşehir Belediyesi Yeni Projeleri',
+                    duration: '09:15',
+                    views: '1.234',
+                    date: '1 hafta önce'
+                },
+                {
+                    category: 'documentary',
+                    title: 'Antakya Mozaik Müzesi Belgeseli',
+                    duration: '20:30',
+                    views: '4.567',
+                    date: '1 hafta önce'
+                }
+            ];
+            
+            newVideos.forEach(video => {
+                const videoHTML = `
+                    <div class="video-card" data-category="${video.category}">
+                        <div class="video-thumbnail">
+                            <img src="https://via.placeholder.com/300x200?text=${encodeURIComponent(video.title.substring(0, 20))}" alt="${video.title}">
+                            <div class="video-play-btn"><i class="fas fa-play"></i></div>
+                            <div class="video-duration">${video.duration}</div>
+                        </div>
+                        <div class="video-content">
+                            <h3 class="video-card-title">${video.title}</h3>
+                            <p class="video-description">Video açıklaması buraya gelecek...</p>
+                            <div class="video-stats">
+                                <div class="video-views">
+                                    <i class="fas fa-eye"></i>
+                                    <span>${video.views}</span>
+                                </div>
+                                <div class="video-date">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>${video.date}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                videoGrid.insertAdjacentHTML('beforeend', videoHTML);
+            });
+            
+            // Update button text
+            const loadMoreBtn = document.querySelector('.load-more-btn');
+            loadMoreBtn.innerHTML = '<i class="fas fa-check"></i> Yeni Videolar Yüklendi';
+            setTimeout(() => {
+                loadMoreBtn.innerHTML = '<i class="fas fa-refresh"></i> Daha Fazla Video Yükle';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- TinyMCE -->
+    <script src="https://cdn.tiny.cloud/1/oim0gabqjhjehse9ytqviw3zoblxyu8iqugb2y02w9h9rjrr/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    
+    <style>
+        :root {
+            --hataylim-red: #dc3545;
+            --hataylim-dark-red: #b71c1c;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .sidebar {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--hataylim-red), var(--hataylim-dark-red));
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            padding-top: 20px;
+            z-index: 1000;
+        }
+        
+        .sidebar .logo {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .sidebar .logo h4 {
+            color: white;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .sidebar .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 12px 20px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        .sidebar .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        
+        .topbar {
+            background: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--hataylim-red), var(--hataylim-dark-red));
+            color: white;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0 !important;
+        }
+        
+        .btn-hataylim {
+            background: linear-gradient(135deg, var(--hataylim-red), var(--hataylim-dark-red));
+            color: white;
+            border: none;
+        }
+        
+        .btn-hataylim:hover {
+            background: linear-gradient(135deg, var(--hataylim-dark-red), var(--hataylim-red));
+            color: white;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--hataylim-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .image-preview {
+            max-width: 100%;
+            max-height: 300px;
+            display: none;
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .required::after {
+            content: " *";
+            color: var(--hataylim-red);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-newspaper fa-3x mb-2"></i>
+            <h4>Hataylım Gazetesi</h4>
+            <small>Admin Panel</small>
+        </div>
+        
+        <nav class="nav flex-column mt-4">
+            <a class="nav-link" href="/admin">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+            <a class="nav-link" href="/admin/articles">
+                <i class="fas fa-newspaper"></i> Haberler
+            </a>
+            <a class="nav-link active" href="/admin/articles/new">
+                <i class="fas fa-plus-circle"></i> Yeni Haber Ekle
+            </a>
+            <a class="nav-link" href="/admin/categories">
+                <i class="fas fa-folder"></i> Kategoriler
+            </a>
+            <a class="nav-link" href="/admin/users">
+                <i class="fas fa-users"></i> Kullanıcılar
+            </a>
+            <a class="nav-link" href="/admin/settings">
+                <i class="fas fa-cog"></i> Ayarlar
+            </a>
+            <hr style="border-color: rgba(255,255,255,0.2);">
+            <a class="nav-link" href="/" target="_blank">
+                <i class="fas fa-eye"></i> Siteyi Görüntüle
+            </a>
+            <a class="nav-link" href="/admin/logout">
+                <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-0">Yeni Haber Ekle</h5>
+            </div>
+            <div class="user-info">
+                <div>
+                    <strong><%= user.fullName || user.username %></strong>
+                    <br>
+                    <small class="text-muted">
+                        <i class="fas fa-shield-alt"></i> <%= user.role === 'admin' ? 'Admin' : user.role === 'editor' ? 'Editör' : 'Yazar' %>
+                    </small>
+                </div>
+                <div class="user-avatar">
+                    <%= user.username.charAt(0).toUpperCase() %>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add Article Form -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-edit"></i> Haber Bilgileri
+            </div>
+            <div class="card-body">
+                <form action="/admin/articles" method="POST" enctype="multipart/form-data" id="articleForm">
+                    <div class="row">
+                        <!-- Başlık -->
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="title" class="form-label required">Haber Başlığı</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="title" 
+                                    name="title" 
+                                    placeholder="Örn: Antakya'da Yeni Proje Açıklandı"
+                                    required
+                                    maxlength="200"
+                                >
+                                <small class="text-muted">Maksimum 200 karakter</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Kategori -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="category" class="form-label required">Kategori</label>
+                                <select class="form-select" id="category" name="category" required>
+                                    <option value="">Kategori Seçin</option>
+                                    <option value="siyaset">Siyaset</option>
+                                    <option value="spor">Spor</option>
+                                    <option value="sanat">Sanat</option>
+                                    <option value="genel">Genel</option>
+                                    <option value="ozel-haber">Özel Haber</option>
+                                    <option value="video-haber">Video Haber</option>
+                                    <option value="basarili-hataylilar">Başarılı Hataylılar</option>
+                                    <option value="eleman-is-arayan">Eleman ve İş Arayanlar</option>
+                                    <option value="yazi-yorum">Yazı Yorum</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Özet -->
+                    <div class="mb-3">
+                        <label for="summary" class="form-label required">Haber Özeti</label>
+                        <textarea 
+                            class="form-control" 
+                            id="summary" 
+                            name="summary" 
+                            rows="3"
+                            placeholder="Haberin kısa özeti (maksimum 300 karakter)"
+                            required
+                            maxlength="300"
+                        ></textarea>
+                        <small class="text-muted">Bu metin haber listelerinde görünecektir. Maksimum 300 karakter</small>
+                    </div>
+                    
+                    <!-- İçerik -->
+                    <div class="mb-3">
+                        <label for="content" class="form-label required">Haber İçeriği</label>
+                        <textarea 
+                            class="form-control" 
+                            id="content" 
+                            name="content" 
+                            rows="15"
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Resim Upload -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Haber Resmi</label>
+                                <input 
+                                    type="file" 
+                                    class="form-control" 
+                                    id="image" 
+                                    name="image"
+                                    accept="image/*"
+                                    onchange="previewImage(event)"
+                                >
+                                <small class="text-muted">JPG, PNG veya WebP formatında, maksimum 5MB</small>
+                                <img id="imagePreview" class="image-preview" alt="Resim önizleme">
+                            </div>
+                        </div>
+                        
+                        <!-- Yazar -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="author" class="form-label">Yazar</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="author" 
+                                    name="author" 
+                                    value="<%= user.fullName || 'Hataylım Gazetesi' %>"
+                                    placeholder="Yazar adı"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="mb-3">
+                        <label for="tags" class="form-label">Etiketler</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="tags" 
+                            name="tags" 
+                            placeholder="Örn: antakya, belediye, proje (virgülle ayırın)"
+                        >
+                        <small class="text-muted">Etiketleri virgül ile ayırın</small>
+                    </div>
+                    
+                    <!-- Checkboxes -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-check mb-3">
+                                <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    id="published" 
+                                    name="published"
+                                    checked
+                                >
+                                <label class="form-check-label" for="published">
+                                    <i class="fas fa-check-circle text-success"></i> Hemen Yayınla
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check mb-3">
+                                <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    id="featured" 
+                                    name="featured"
+                                >
+                                <label class="form-check-label" for="featured">
+                                    <i class="fas fa-star text-warning"></i> Öne Çıkan Haber
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Buttons -->
+                    <hr>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-hataylim btn-lg">
+                            <i class="fas fa-save"></i> Haberi Kaydet
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg" onclick="window.location.href='/admin/articles'">
+                            <i class="fas fa-times"></i> İptal
+                        </button>
+                        <button type="reset" class="btn btn-outline-warning btn-lg">
+                            <i class="fas fa-undo"></i> Sıfırla
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // TinyMCE Editor Initialization
+        tinymce.init({
+            selector: '#content',
+            height: 500,
+            menubar: true,
+            plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo | blocks | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media table | removeformat code fullscreen | help',
+            content_style: 'body { font-family: "Times New Roman", Times, serif; font-size: 14pt; line-height: 1.6; }',
+            language: 'tr_TR',
+            branding: false,
+            promotion: false
+        });
+        
+        // Image Preview Function
+        function previewImage(event) {
+            const preview = document.getElementById('imagePreview');
+            const file = event.target.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+        
+        // Form Submission
+        document.getElementById('articleForm').addEventListener('submit', function(e) {
+            // TinyMCE içeriğini form'a aktar
+            tinymce.triggerSave();
+            
+            // Validation
+            const title = document.getElementById('title').value.trim();
+            const category = document.getElementById('category').value;
+            const summary = document.getElementById('summary').value.trim();
+            const content = tinymce.get('content').getContent();
+            
+            if (!title || !category || !summary || !content) {
+                e.preventDefault();
+                alert('Lütfen tüm zorunlu alanları doldurun!');
+                return false;
+            }
+            
+            return true;
+        });
+    </script>
+</body>
+</html>

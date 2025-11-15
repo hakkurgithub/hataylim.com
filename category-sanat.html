@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanat ve Kültür - Hataylım</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="description" content="Hatay'ın zengin sanat ve kültür hayatından haberler. Müze, galeri, festival ve sanatçı haberleri Hataylım'da.">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-newspaper"></i> Hataylım Gazetesi</h1>
+                    <p class="tagline">Bağımsız Türk Basını - Hatay'ın Sesi</p>
+                </div>
+                <div class="header-info">
+                    <div class="date-weather">
+                        <span id="current-date"></span>
+                        <span class="weather">
+                            <i class="fas fa-sun"></i> 24°C Hatay
+                        </span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="category-index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="category-siyaset.html"><i class="fas fa-landmark"></i> Siyaset</a></li>
+                <li><a href="category-spor.html"><i class="fas fa-futbol"></i> Spor</a></li>
+                <li><a href="category-ozel-haber.html"><i class="fas fa-star"></i> Özel Haber</a></li>
+                <li><a href="category-sanat.html" class="active"><i class="fas fa-palette"></i> Sanat</a></li>
+                <li><a href="category-genel.html"><i class="fas fa-globe"></i> Genel</a></li>
+                <li><a href="category-video-haber.html"><i class="fas fa-video"></i> Video Haber</a></li>
+                <li><a href="category-basarili-hataylilar.html"><i class="fas fa-award"></i> Başarılı Hataylılar</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Category Header -->
+    <section class="category-header" style="background: linear-gradient(135deg, #fd7e14 0%, #e83e8c 100%); color: white; padding: 40px 0; text-align: center;">
+        <div class="container">
+            <div style="margin-bottom: 15px;">
+                <a href="category-index.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">Ana Sayfa</a>
+                <span style="margin: 0 10px;">></span>
+                <span>Sanat</span>
+            </div>
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">
+                <i class="fas fa-palette"></i> Sanat ve Kültür
+            </h1>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Hatay'ın zengin sanat ve kültür mirası</p>
+        </div>
+    </section>
+
+    <!-- Cultural Events Banner -->
+    <section style="background: #f8f9fa; padding: 20px 0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
+                <div style="padding: 15px;">
+                    <i class="fas fa-museum" style="font-size: 2rem; color: #fd7e14; margin-bottom: 10px;"></i>
+                    <h3 style="margin-bottom: 5px;">Müzeler</h3>
+                    <p style="font-size: 0.9rem; color: #666;">8 Aktif Müze</p>
+                </div>
+                <div style="padding: 15px;">
+                    <i class="fas fa-paint-brush" style="font-size: 2rem; color: #fd7e14; margin-bottom: 10px;"></i>
+                    <h3 style="margin-bottom: 5px;">Sanat Galerileri</h3>
+                    <p style="font-size: 0.9rem; color: #666;">12 Aktif Galeri</p>
+                </div>
+                <div style="padding: 15px;">
+                    <i class="fas fa-theater-masks" style="font-size: 2rem; color: #fd7e14; margin-bottom: 10px;"></i>
+                    <h3 style="margin-bottom: 5px;">Kültür Merkezleri</h3>
+                    <p style="font-size: 0.9rem; color: #666;">6 Aktif Merkez</p>
+                </div>
+                <div style="padding: 15px;">
+                    <i class="fas fa-calendar-alt" style="font-size: 2rem; color: #fd7e14; margin-bottom: 10px;"></i>
+                    <h3 style="margin-bottom: 5px;">Festivaller</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Yıllık 15 Festival</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Main Content Area -->
+                <div class="content-main">
+                    <!-- Featured Arts Article -->
+                    <section class="featured-article">
+                        <div class="featured-image">
+                            <img src="https://via.placeholder.com/800x400?text=Antakya+Mozaik+Müzesi" alt="Antakya Mozaik Müzesi">
+                            <div class="featured-overlay">
+                                <span class="category-badge culture">Sanat</span>
+                                <h2 class="featured-title">
+                                    Antakya Mozaik Müzesi Yenileme Projesi Tamamlandı
+                                </h2>
+                                <div class="featured-meta">
+                                    <span><i class="fas fa-calendar"></i> 15 Kasım 2024</span>
+                                    <span><i class="fas fa-user"></i> Zeynep Kaya</span>
+                                    <span><i class="fas fa-eye"></i> 3.245 görüntüleme</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Arts News Grid -->
+                    <section class="articles-grid" id="articlesGrid">
+                        <!-- Article 1 -->
+                        <article class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/300x200?text=Sanat+Galerisi" alt="Sanat Galerisi">
+                                <span class="category-badge culture">Sanat</span>
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">
+                                    <a href="post-detail.html">Hatay Sanat Galerisi'nde Yeni Sergi Açıldı</a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    Yerel sanatçıların eserlerinin yer aldığı "Hatay'ın Renkleri" sergisi ziyaretçileri ağırlıyor. Modern ve geleneksel sanatın buluştuğu sergi...
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-calendar"></i> 4 saat önce</span>
+                                    <span><i class="fas fa-user"></i> Sanat Muhabiri</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article 2 -->
+                        <article class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/300x200?text=Kültür+Festivali" alt="Kültür Festivali">
+                                <span class="category-badge culture">Sanat</span>
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">
+                                    <a href="post-detail.html">Hatay Uluslararası Kültür Festivali Başlıyor</a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    Dünyanın farklı ülkelerinden sanatçıların katılacağı festival, 5 gün boyunca şehri sanatla buluşturacak. Ücretsiz etkinlikler dikkat çekiyor...
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-calendar"></i> 1 gün önce</span>
+                                    <span><i class="fas fa-user"></i> Kültür Muhabiri</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article 3 -->
+                        <article class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/300x200?text=Tiyatro+Sahnesi" alt="Tiyatro Sahnesi">
+                                <span class="category-badge culture">Sanat</span>
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">
+                                    <a href="post-detail.html">Antakya Belediye Tiyatrosu'nda Prömiyeri Yapıldı</a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    Hatay'ın yerel tarihini konu alan "Taşların Dili" adlı oyunun galası gerçekleşti. Oyuncuların performansı büyük beğeni topladı...
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-calendar"></i> 2 gün önce</span>
+                                    <span><i class="fas fa-user"></i> Tiyatro Eleştirmeni</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article 4 -->
+                        <article class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/300x200?text=Müze+Etkinliği" alt="Müze Etkinliği">
+                                <span class="category-badge culture">Sanat</span>
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">
+                                    <a href="post-detail.html">Hatay Arkeoloji Müzesi'nde Çocuk Atölyesi</a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    Çocuklar için özel olarak düzenlenen arkeoloji atölyesinde, minikler tarihle eğlenceli bir şekilde tanışıyor. Hafta sonu etkinlikleri devam ediyor...
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-calendar"></i> 3 gün önce</span>
+                                    <span><i class="fas fa-user"></i> Müze Uzmanı</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article 5 -->
+                        <article class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/300x200?text=Sanatçı+Röportajı" alt="Sanatçı Röportajı">
+                                <span class="category-badge culture">Sanat</span>
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">
+                                    <a href="post-detail.html">Ünlü Heykeltıraş Hatay'da Atölye Açıyor</a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    Uluslararası başarılara imza atmış heykeltıraş, memleketi Hatay'da gençlere sanat eğitimi vermek için atölye kuruyor...
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-calendar"></i> 4 gün önce</span>
+                                    <span><i class="fas fa-user"></i> Röportajcı</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article 6 -->
+                        <article class="article-card">
+                            <div class="article-image">
+                                <img src="https://via.placeholder.com/300x200?text=Kültür+Merkezi" alt="Kültür Merkezi">
+                                <span class="category-badge culture">Sanat</span>
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title">
+                                    <a href="post-detail.html">Yeni Kültür Merkezi Hizmete Açılıyor</a>
+                                </h3>
+                                <p class="article-excerpt">
+                                    Modern donanıma sahip kültür merkezi, konser salonu, sergi alanları ve sanat atölyeleri ile sanatseverleri bekliyor...
+                                </p>
+                                <div class="article-meta">
+                                    <span><i class="fas fa-calendar"></i> 1 hafta önce</span>
+                                    <span><i class="fas fa-user"></i> Mimarlık Muhabiri</span>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+
+                    <!-- Load More Button -->
+                    <div class="load-more">
+                        <button type="button" class="load-more-btn" onclick="loadMoreNews()">
+                            <i class="fas fa-refresh"></i> Daha Fazla Sanat Haberi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Upcoming Events -->
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-calendar-check"></i> Yaklaşan Etkinlikler
+                        </h3>
+                        <div style="padding: 20px;">
+                            <div style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #fd7e14;">
+                                <h4 style="margin-bottom: 5px; color: #333;">Uluslararası Kültür Festivali</h4>
+                                <p style="font-size: 0.8rem; color: #666; margin-bottom: 5px;">20-24 Kasım 2024</p>
+                                <p style="font-size: 0.8rem; color: #666;">Antakya Kültür Merkezi</p>
+                            </div>
+                            <div style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #fd7e14;">
+                                <h4 style="margin-bottom: 5px; color: #333;">Modern Sanat Sergisi</h4>
+                                <p style="font-size: 0.8rem; color: #666; margin-bottom: 5px;">25 Kasım - 15 Aralık</p>
+                                <p style="font-size: 0.8rem; color: #666;">Hatay Sanat Galerisi</p>
+                            </div>
+                            <div style="padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #fd7e14;">
+                                <h4 style="margin-bottom: 5px; color: #333;">Çocuk Tiyatro Festivali</h4>
+                                <p style="font-size: 0.8rem; color: #666; margin-bottom: 5px;">1-5 Aralık 2024</p>
+                                <p style="font-size: 0.8rem; color: #666;">Belediye Tiyatrosu</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Popular Arts Posts -->
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-fire"></i> Popüler Sanat Haberleri
+                        </h3>
+                        <div class="popular-posts">
+                            <article class="popular-post">
+                                <div class="post-number">1</div>
+                                <div class="post-content">
+                                    <h4><a href="post-detail.html">Mozaik Müzesi Yenilendi</a></h4>
+                                    <span class="post-meta">3.245 görüntüleme</span>
+                                </div>
+                            </article>
+                            <article class="popular-post">
+                                <div class="post-number">2</div>
+                                <div class="post-content">
+                                    <h4><a href="post-detail.html">Kültür Festivali Başlıyor</a></h4>
+                                    <span class="post-meta">2.876 görüntüleme</span>
+                                </div>
+                            </article>
+                            <article class="popular-post">
+                                <div class="post-number">3</div>
+                                <div class="post-content">
+                                    <h4><a href="post-detail.html">Yeni Sanat Galerisi Sergisi</a></h4>
+                                    <span class="post-meta">2.345 görüntüleme</span>
+                                </div>
+                            </article>
+                            <article class="popular-post">
+                                <div class="post-number">4</div>
+                                <div class="post-content">
+                                    <h4><a href="post-detail.html">Tiyatro Oyunu Prömiyeri</a></h4>
+                                    <span class="post-meta">1.987 görüntüleme</span>
+                                </div>
+                            </article>
+                            <article class="popular-post">
+                                <div class="post-number">5</div>
+                                <div class="post-content">
+                                    <h4><a href="post-detail.html">Heykeltıraş Atölye Açıyor</a></h4>
+                                    <span class="post-meta">1.654 görüntüleme</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- Cultural Venues -->
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-building"></i> Kültür Mekanları
+                        </h3>
+                        <ul class="category-list">
+                            <li><a href="#">Antakya Mozaik Müzesi <span>⭐</span></a></li>
+                            <li><a href="#">Hatay Arkeoloji Müzesi <span>⭐</span></a></li>
+                            <li><a href="#">Antakya Belediye Tiyatrosu <span>🎭</span></a></li>
+                            <li><a href="#">Hatay Sanat Galerisi <span>🎨</span></a></li>
+                            <li><a href="#">Kültür Merkezi <span>🏛️</span></a></li>
+                            <li><a href="#">Açık Hava Tiyatrosu <span>🎪</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Art Categories -->
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-tags"></i> Sanat Kategorileri
+                        </h3>
+                        <div style="padding: 20px;">
+                            <a href="#" class="tag" style="display: inline-block; background: #f8f9fa; color: #fd7e14; padding: 8px 15px; border-radius: 20px; margin-right: 10px; margin-bottom: 10px; font-size: 0.9rem; text-decoration: none; border: 1px solid #fd7e14; transition: all 0.3s ease;">Müze</a>
+                            <a href="#" class="tag" style="display: inline-block; background: #f8f9fa; color: #fd7e14; padding: 8px 15px; border-radius: 20px; margin-right: 10px; margin-bottom: 10px; font-size: 0.9rem; text-decoration: none; border: 1px solid #fd7e14; transition: all 0.3s ease;">Galeri</a>
+                            <a href="#" class="tag" style="display: inline-block; background: #f8f9fa; color: #fd7e14; padding: 8px 15px; border-radius: 20px; margin-right: 10px; margin-bottom: 10px; font-size: 0.9rem; text-decoration: none; border: 1px solid #fd7e14; transition: all 0.3s ease;">Tiyatro</a>
+                            <a href="#" class="tag" style="display: inline-block; background: #f8f9fa; color: #fd7e14; padding: 8px 15px; border-radius: 20px; margin-right: 10px; margin-bottom: 10px; font-size: 0.9rem; text-decoration: none; border: 1px solid #fd7e14; transition: all 0.3s ease;">Festival</a>
+                            <a href="#" class="tag" style="display: inline-block; background: #f8f9fa; color: #fd7e14; padding: 8px 15px; border-radius: 20px; margin-right: 10px; margin-bottom: 10px; font-size: 0.9rem; text-decoration: none; border: 1px solid #fd7e14; transition: all 0.3s ease;">Sergi</a>
+                            <a href="#" class="tag" style="display: inline-block; background: #f8f9fa; color: #fd7e14; padding: 8px 15px; border-radius: 20px; margin-right: 10px; margin-bottom: 10px; font-size: 0.9rem; text-decoration: none; border: 1px solid #fd7e14; transition: all 0.3s ease;">Sanatçı</a>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="widget newsletter-widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-palette"></i> Sanat Bülteni
+                        </h3>
+                        <p>Sanat etkinliklerini kaçırmayın!</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="E-mail adresiniz..." required>
+                            <button type="submit">Abone Ol</button>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hataylım Hakkında</h3>
+                    <p>Hatay'ın güvenilir haber kaynağı olarak, doğru ve tarafsız haberleri sizlere ulaştırmak için çalışıyoruz.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Sanat & Kültür</h3>
+                    <ul>
+                        <li><a href="#">Müze Haberleri</a></li>
+                        <li><a href="#">Galeri Etkinlikleri</a></li>
+                        <li><a href="#">Festival Takvimleri</a></li>
+                        <li><a href="#">Sanatçı Röportajları</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>İletişim</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> goruntumedya@gmail.com</p>
+                        <p><i class="fas fa-envelope"></i> info@hataylim.com</p>
+                        <p><i class="fab fa-whatsapp"></i> +90 552 424 84 48</p>
+                        <p style="margin-top: 10px;"><strong>İstanbul:</strong></p>
+                        <p style="font-size: 0.9rem;">Emekyemez Mah. Yanıkkapı Sok. No.15 Karaköy/İstanbul</p>
+                        <p style="margin-top: 10px;"><strong>Hatay:</strong></p>
+                        <p style="font-size: 0.9rem;">Kurtuluş Mah. 67. Sk. Karaoğlan Psj. No.16 İskenderun</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Banka Bilgileri</h3>
+                    <div class="contact-info">
+                        <p><strong>Hesap Sahibi:</strong></p>
+                        <p>Erdahan POLAT</p>
+                        <p style="margin-top: 10px;"><strong>Banka:</strong> VAKIFBANK</p>
+                        <p style="margin-top: 5px;"><strong>İBAN:</strong></p>
+                        <p style="font-size: 0.85rem; word-break: break-all;">TR90 0001 5001 5800 7312 5190 86</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Yasal</h3>
+                    <ul>
+                        <li><a href="#">Gizlilik Politikası</a></li>
+                        <li><a href="#">Kullanım Şartları</a></li>
+                        <li><a href="#">İletişim</a></li>
+                        <li><a href="#">Hakkımızda</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hataylım. Tüm hakları saklıdır. Bu site eğitim amaçlı oluşturulmuştur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hatay'da Tarihî Keşif: Antik Dönem Eserler Bulundu - Hataylım</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="description" content="Hatay'da yapılan arkeolojik kazılarda önemli antik dönem eserler bulundu. Uzmanlar bu keşfin tarih açısından büyük önem taşıdığını belirtiyor.">
+    <style>
+        /* Post Detail Specific Styles */
+        .post-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .post-breadcrumb {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .post-breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .post-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .post-breadcrumb span {
+            margin: 0 10px;
+        }
+
+        .post-title {
+            font-size: 3rem;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .post-content-area {
+            padding: 50px 0;
+        }
+
+        .post-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .post-main {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .post-featured-image {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .post-featured-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .post-content h2 {
+            color: #2a5298;
+            font-size: 1.8rem;
+            margin: 30px 0 20px 0;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 10px;
+        }
+
+        .post-content h3 {
+            color: #333;
+            font-size: 1.4rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .post-content img {
+            margin: 30px auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .post-content blockquote {
+            background: #f8f9fa;
+            border-left: 4px solid #2a5298;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        .post-content ul,
+        .post-content ol {
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+
+        .post-content li {
+            margin-bottom: 10px;
+        }
+
+        .post-tags {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .tags-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #2a5298;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border: 1px solid #2a5298;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #2a5298;
+            color: white;
+        }
+
+        .post-share {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .share-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .share-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .share-button.facebook {
+            background: #4267B2;
+            color: white;
+        }
+
+        .share-button.twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+
+        .share-button.linkedin {
+            background: #2867B2;
+            color: white;
+        }
+
+        .share-button.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .author-box {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .author-details h3 {
+            color: #2a5298;
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+
+        .author-bio {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .comments-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .comments-title {
+            color: #2a5298;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comment-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-submit {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background: #1e3c72;
+            transform: translateY(-2px);
+        }
+
+        .related-posts {
+            margin-top: 30px;
+        }
+
+        .related-title {
+            color: #2a5298;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .related-post {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .related-post:hover {
+            transform: translateY(-3px);
+        }
+
+        .related-post img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .related-post-content {
+            padding: 15px;
+        }
+
+        .related-post-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            line-height: 1.4;
+        }
+
+        .related-post-title:hover {
+            color: #2a5298;
+        }
+
+        .related-post-meta {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .post-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .post-main {
+                padding: 25px;
+            }
+
+            .post-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .author-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .share-buttons {
+                justify-content: center;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .post-title {
+                font-size: 1.6rem;
+            }
+
+            .post-main {
+                padding: 20px;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+            }
+
+            .share-button {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-newspaper"></i> Hataylım Gazetesi</h1>
+                    <p class="tagline">Bağımsız Türk Basını - Hatay'ın Sesi</p>
+                </div>
+                <div class="header-info">
+                    <div class="date-weather">
+                        <span id="current-date"></span>
+                        <span class="weather">
+                            <i class="fas fa-sun"></i> 24°C Hatay
+                        </span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="category-index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="category-siyaset.html"><i class="fas fa-landmark"></i> Siyaset</a></li>
+                <li><a href="category-spor.html"><i class="fas fa-futbol"></i> Spor</a></li>
+                <li><a href="category-ozel-haber.html" class="active"><i class="fas fa-star"></i> Özel Haber</a></li>
+                <li><a href="category-sanat.html"><i class="fas fa-palette"></i> Sanat</a></li>
+                <li><a href="category-genel.html"><i class="fas fa-globe"></i> Genel</a></li>
+                <li><a href="category-video-haber.html"><i class="fas fa-video"></i> Video Haber</a></li>
+                <li><a href="category-basarili-hataylilar.html"><i class="fas fa-award"></i> Başarılı Hataylılar</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Post Header -->
+    <section class="post-header">
+        <div class="container">
+            <div class="post-breadcrumb">
+                <a href="category-index.html">Ana Sayfa</a>
+                <span>></span>
+                <a href="category-ozel-haber.html">Özel Haber</a>
+                <span>></span>
+                <span>Hatay'da Tarihî Keşif: Antik Dönem Eserler Bulundu</span>
+            </div>
+            <h1 class="post-title">Hatay'da Tarihî Keşif: Antik Dönem Eserler Bulundu</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-calendar"></i> 15 Kasım 2024</span>
+                <span><i class="fas fa-user"></i> Ahmet Yılmaz</span>
+                <span><i class="fas fa-eye"></i> 1.234 görüntüleme</span>
+                <span><i class="fas fa-clock"></i> 5 dakika okuma</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Content -->
+    <main class="post-content-area">
+        <div class="container">
+            <div class="post-grid">
+                <!-- Main Content -->
+                <article class="post-main">
+                    <div class="post-featured-image">
+                        <img src="https://via.placeholder.com/800x400?text=Arkeolojik+Keşif" alt="Hatay'da bulunan antik eserler">
+                    </div>
+
+                    <div class="post-content">
+                        <p class="lead">Hatay'ın Antakya ilçesinde sürdürülen arkeolojik kazı çalışmalarında, Roma dönemine ait önemli bulgular gün yüzüne çıkarıldı. Uzmanlar, bu keşfin bölgenin tarihî önemini bir kez daha ortaya koyduğunu belirtiyor.</p>
+
+                        <h2>Kazıların Başladığı Alan</h2>
+                        
+                        <p>Antakya Arkeoloji Müzesi Müdürlüğü koordinesinde başlatılan kazı çalışmaları, şehrin merkezindeki antik yerleşim bölgesinde yürütülüyor. Projeyi yöneten Arkeoloji Uzmanı Prof. Dr. Mehmet Arslan, "Bu bölgede yaptığımız çalışmalar, Antakya'nın antik dönemdeki önemini gözler önüne seriyor" dedi.</p>
+
+                        <blockquote>
+                            "Bu keşifler, Hatay'ın sadece günümüzde değil, binlerce yıl öncesinde de önemli bir merkez olduğunu gösteriyor. Burada bulunan mozaikler ve heykeller, dönemin sanat anlayışını yansıtan nadir örnekler."
+                        </blockquote>
+
+                        <h2>Bulunan Eserler</h2>
+
+                        <p>Kazı çalışmaları sırasında ortaya çıkarılan eserler arasında şunlar bulunuyor:</p>
+
+                        <ul>
+                            <li><strong>Roma Dönemi Mozaikleri:</strong> Geometrik desenler içeren büyük boyutlu mozaik parçaları</li>
+                            <li><strong>Mermer Heykeller:</strong> Tanrı ve tanrıçaları temsil eden heykeller</li>
+                            <li><strong>Sikke Koleksiyonu:</strong> Çeşitli dönemlere ait altın ve gümüş sikkeler</li>
+                            <li><strong>Günlük Eşyalar:</strong> Seramik kaplar, kandiller ve süs eşyaları</li>
+                            <li><strong>Yazıtlar:</strong> Yunanca ve Latince yazıtların bulunduğu taş parçaları</li>
+                        </ul>
+
+                        <h3>Mozaikların Önemi</h3>
+
+                        <p>Kazı alanında bulunan mozaikler, özellikle dikkat çekici nitelikte. Rengarenk taşlarla oluşturulmuş bu sanat eserleri, Roma döneminin zengin kültürel mirasını yansıtıyor. Uzmanlar, bu mozaiklerin M.S. 2. yüzyıla ait olduğunu tahmin ediyor.</p>
+
+                        <h2>Bilimsel Önemi</h2>
+
+                        <p>Bulunan eserler, sadece sanatsal değil aynı zamanda büyük bilimsel öneme sahip. Ankara Üniversitesi Arkeoloji Bölümü'nden Prof. Dr. Ayşe Demir, "Bu bulgular, antik dönemde Antakya'nın ticaret yollarının kesişim noktasında yer aldığını ve kozmopolit bir şehir olduğunu doğruluyor" açıklamasında bulundu.</p>
+
+                        <h3>Koruma Çalışmaları</h3>
+
+                        <p>Bulunan eserlerin korunması için özel önlemler alınıyor. Kültür ve Turizm Bakanlığı'nın desteklediği projede, eserler özel laboratuvar ortamında temizleniyor ve restore ediliyor. Bu çalışmalar tamamlandığında, eserler Antakya Arkeoloji Müzesi'nde sergilenecek.</p>
+
+                        <h2>Gelecek Planları</h2>
+
+                        <p>Kazı çalışmaları önümüzdeki üç yıl boyunca devam edecek. Proje kapsamında bölgenin daha geniş bir alanının araştırılması planlanıyor. Ayrıca, bulunan eserlerle ilgili uluslararası bir konferans düzenlenerek, dünya çapında arkeoloji uzmanlarının görüşleri alınacak.</p>
+
+                        <p>Hatay Büyükşehir Belediye Başkanı, bu keşfin şehrin turizmine de önemli katkı sağlayacağını belirterek, "Hatay'ın tarihi zenginliklerini dünyaya tanıtmak için elimizden geleni yapıyoruz" dedi.</p>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="post-tags">
+                        <div class="tags-title"><i class="fas fa-tags"></i> Etiketler:</div>
+                        <a href="#" class="tag">Arkeoloji</a>
+                        <a href="#" class="tag">Hatay</a>
+                        <a href="#" class="tag">Antakya</a>
+                        <a href="#" class="tag">Roma Dönemi</a>
+                        <a href="#" class="tag">Mozaik</a>
+                        <a href="#" class="tag">Tarihî Keşif</a>
+                        <a href="#" class="tag">Müze</a>
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="post-share">
+                        <div class="share-title"><i class="fas fa-share-alt"></i> Haberi Paylaş:</div>
+                        <div class="share-buttons">
+                            <a href="#" class="share-button facebook">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </a>
+                            <a href="#" class="share-button twitter">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </a>
+                            <a href="#" class="share-button linkedin">
+                                <i class="fab fa-linkedin-in"></i> LinkedIn
+                            </a>
+                            <a href="#" class="share-button whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Author Box -->
+                    <div class="author-box">
+                        <div class="author-info">
+                            <div class="author-avatar">AY</div>
+                            <div class="author-details">
+                                <h3>Ahmet Yılmaz</h3>
+                                <p><strong>Arkeoloji ve Tarih Muhabiri</strong></p>
+                                <div class="author-bio">
+                                    15 yıldır Hatay bölgesinin tarihî ve arkeolojik haberlerini takip eden deneyimli gazeteci. Ankara Üniversitesi Arkeoloji Bölümü mezunu. Hatay'ın kültürel mirasını tanıtma konusunda çalışmalarını sürdürüyor.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div class="comments-section">
+                        <h3 class="comments-title">
+                            <i class="fas fa-comments"></i> Yorumlar (3)
+                        </h3>
+                        
+                        <div class="comment-form">
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Adınız:</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">E-mail:</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">Yorumunuz:</label>
+                                    <textarea id="comment" name="comment" placeholder="Yorumunuzu yazın..." required></textarea>
+                                </div>
+                                <button type="submit" class="form-submit">
+                                    <i class="fas fa-paper-plane"></i> Yorum Gönder
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <div style="color: #666; text-align: center; padding: 20px;">
+                            <i class="fas fa-info-circle"></i> Yorumlar moderatör onayından sonra yayınlanacaktır.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Popular Posts -->
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-fire"></i> Popüler Haberler
+                        </h3>
+                        <div class="popular-posts">
+                            <article class="popular-post">
+                                <div class="post-number">1</div>
+                                <div class="post-content">
+                                    <h4><a href="#">Hatayspor'un Yeni Transferi</a></h4>
+                                    <span class="post-meta">987 görüntüleme</span>
+                                </div>
+                            </article>
+                            <article class="popular-post">
+                                <div class="post-number">2</div>
+                                <div class="post-content">
+                                    <h4><a href="#">İskenderun Limanı Yatırımı</a></h4>
+                                    <span class="post-meta">756 görüntüleme</span>
+                                </div>
+                            </article>
+                            <article class="popular-post">
+                                <div class="post-number">3</div>
+                                <div class="post-content">
+                                    <h4><a href="#">Mozaik Müzesi Yenileniyor</a></h4>
+                                    <span class="post-meta">623 görüntüleme</span>
+                                </div>
+                            </article>
+                            <article class="popular-post">
+                                <div class="post-number">4</div>
+                                <div class="post-content">
+                                    <h4><a href="#">Yeni Park Alanları</a></h4>
+                                    <span class="post-meta">445 görüntüleme</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- Related Posts -->
+                    <div class="widget related-posts">
+                        <h3 class="widget-title related-title">
+                            <i class="fas fa-newspaper"></i> İlgili Haberler
+                        </h3>
+                        <div class="related-grid">
+                            <article class="related-post">
+                                <img src="https://via.placeholder.com/250x120?text=İlgili+Haber+1" alt="İlgili Haber">
+                                <div class="related-post-content">
+                                    <a href="#" class="related-post-title">Antakya Müzesi'ne Ziyaretçi Akını</a>
+                                    <div class="related-post-meta">2 gün önce</div>
+                                </div>
+                            </article>
+                            <article class="related-post">
+                                <img src="https://via.placeholder.com/250x120?text=İlgili+Haber+2" alt="İlgili Haber">
+                                <div class="related-post-content">
+                                    <a href="#" class="related-post-title">Hatay'da Yeni Kazı Alanları</a>
+                                    <div class="related-post-meta">1 hafta önce</div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="widget newsletter-widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-envelope"></i> Haber Bülteni
+                        </h3>
+                        <p>Son haberleri e-mail adresinize gönderelim</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="E-mail adresiniz..." required>
+                            <button type="submit">Abone Ol</button>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hataylım Hakkında</h3>
+                    <p>Hatay'ın güvenilir haber kaynağı olarak, doğru ve tarafsız haberleri sizlere ulaştırmak için çalışıyoruz.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Kategoriler</h3>
+                    <ul>
+                        <li><a href="category-siyaset.html">Siyaset</a></li>
+                        <li><a href="category-spor.html">Spor</a></li>
+                        <li><a href="category-sanat.html">Sanat</a></li>
+                        <li><a href="category-genel.html">Genel</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>İletişim</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> goruntumedya@gmail.com</p>
+                        <p><i class="fas fa-envelope"></i> info@hataylim.com</p>
+                        <p><i class="fab fa-whatsapp"></i> +90 552 424 84 48</p>
+                        <p style="margin-top: 10px;"><strong>İstanbul:</strong></p>
+                        <p style="font-size: 0.9rem;">Emekyemez Mah. Yanıkkapı Sok. No.15 Karaköy/İstanbul</p>
+                        <p style="margin-top: 10px;"><strong>Hatay:</strong></p>
+                        <p style="font-size: 0.9rem;">Kurtuluş Mah. 67. Sk. Karaoğlan Psj. No.16 İskenderun</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Banka Bilgileri</h3>
+                    <div class="contact-info">
+                        <p><strong>Hesap Sahibi:</strong></p>
+                        <p>Erdahan POLAT</p>
+                        <p style="margin-top: 10px;"><strong>Banka:</strong> VAKIFBANK</p>
+                        <p style="margin-top: 5px;"><strong>İBAN:</strong></p>
+                        <p style="font-size: 0.85rem; word-break: break-all;">TR90 0001 5001 5800 7312 5190 86</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Yasal</h3>
+                    <ul>
+                        <li><a href="#">Gizlilik Politikası</a></li>
+                        <li><a href="#">Kullanım Şartları</a></li>
+                        <li><a href="#">İletişim</a></li>
+                        <li><a href="#">Hakkımızda</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hataylım. Tüm hakları saklıdır. Bu site eğitim amaçlı oluşturılmuştur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
