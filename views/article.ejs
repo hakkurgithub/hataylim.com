@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= article.title %> - Hataylım Gazetesi</title>
+    <meta name="description" content="<%= article.summary %>">
+    <meta name="keywords" content="<%= article.tags.join(', ') %>">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="<%= article.title %>">
+    <meta property="og:description" content="<%= article.summary %>">
+    <meta property="og:image" content="<%= article.imageUrl %>">
+    <meta property="og:type" content="article">
+    
+    <style>
+        :root {
+            --hataylim-red: #dc3545;
+            --hataylim-dark-red: #b71c1c;
+            --text-color: #2c3e50;
+            --border-color: #dee2e6;
+        }
+        
+        body {
+            font-family: 'Merriweather', 'Times New Roman', serif;
+            color: var(--text-color);
+            background-color: #f8f9fa;
+        }
+        
+        .newspaper-header {
+            background: linear-gradient(135deg, var(--hataylim-red), var(--hataylim-dark-red));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 5px solid var(--hataylim-dark-red);
+        }
+        
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .newspaper-subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .navbar {
+            background-color: white;
+            border-bottom: 2px solid var(--border-color);
+            padding: 0;
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--text-color);
+            font-weight: 600;
+            padding: 15px 20px;
+            border-right: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            background-color: var(--hataylim-red);
+            color: white;
+        }
+        
+        .main-content {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 15px;
+        }
+        
+        .article-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .article-header {
+            padding: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .article-category {
+            display: inline-block;
+            background: var(--hataylim-red);
+            color: white;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--hataylim-dark-red);
+        }
+        
+        .article-summary {
+            font-size: 1.3rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 30px;
+            color: #666;
+            font-size: 0.95rem;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .article-meta i {
+            color: var(--hataylim-red);
+        }
+        
+        .article-image-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .article-body {
+            padding: 50px;
+        }
+        
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #333;
+        }
+        
+        .article-content p {
+            margin-bottom: 25px;
+        }
+        
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            color: var(--hataylim-dark-red);
+        }
+        
+        .article-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 30px 0 15px;
+            color: var(--text-color);
+        }
+        
+        .article-tags {
+            padding: 30px 50px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #666;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: var(--hataylim-red);
+            color: white;
+        }
+        
+        .share-buttons {
+            padding: 30px 50px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .share-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .share-facebook { background: #3b5998; }
+        .share-twitter { background: #1da1f2; }
+        .share-whatsapp { background: #25d366; }
+        .share-linkedin { background: #0077b5; }
+        
+        .ad-container {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .ad-label {
+            font-size: 0.7rem;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-widget {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .widget-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--hataylim-dark-red);
+            border-bottom: 2px solid var(--hataylim-red);
+            padding-bottom: 10px;
+        }
+        
+        .related-article {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .related-article:last-child {
+            border-bottom: none;
+        }
+        
+        .related-article img {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .related-article-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 5px;
+        }
+        
+        .related-article-content h4 a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .related-article-content h4 a:hover {
+            color: var(--hataylim-red);
+        }
+        
+        .related-article-meta {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        .newspaper-footer {
+            background: linear-gradient(135deg, var(--hataylim-dark-red), var(--hataylim-red));
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-contact h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 768px) {
+            .newspaper-title {
+                font-size: 2.5rem;
+            }
+            
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-header,
+            .article-body,
+            .article-tags,
+            .share-buttons {
+                padding: 25px;
+            }
+            
+            .article-image-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="newspaper-header">
+        <div class="container">
+            <h1 class="newspaper-title">HATAYLIM GAZETESİ</h1>
+            <p class="newspaper-subtitle">Bağımsız Türk Basını - Hatay'ın Sesi</p>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home"></i> Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kategori/siyaset">Siyaset</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kategori/spor">Spor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kategori/sanat">Sanat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kategori/genel">Genel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kategori/ozel-haber">Özel Haber</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kategori/video-haber">Video Haber</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kategori/basarili-hataylilar">Başarılı Hataylılar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/login"><i class="fas fa-lock"></i> Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="row">
+            <!-- Article Content -->
+            <div class="col-lg-8">
+                <!-- Google AdSense - Article Top (Leaderboard 728x90) -->
+                <div class="ad-container">
+                    <div class="ad-label">Reklam</div>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:728px;height:90px"
+                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                         data-ad-slot="1234567890"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                
+                <div class="article-container">
+                    <!-- Article Header -->
+                    <div class="article-header">
+                        <span class="article-category"><%= article.categoryName %></span>
+                        <h1 class="article-title"><%= article.title %></h1>
+                        <p class="article-summary"><%= article.summary %></p>
+                        <div class="article-meta">
+                            <span><i class="fas fa-user"></i> <%= article.author %></span>
+                            <span><i class="far fa-calendar"></i> <%= new Date(article.createdAt).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) %></span>
+                            <span><i class="fas fa-eye"></i> <%= article.views %> görüntülenme</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Article Image -->
+                    <div class="article-image-container">
+                        <img src="<%= article.imageUrl %>" alt="<%= article.title %>" class="article-image">
+                    </div>
+                    
+                    <!-- Article Body -->
+                    <div class="article-body">
+                        <div class="article-content">
+                            <%- article.content %>
+                        </div>
+                        
+                        <!-- Google AdSense - In-Article (Rectangle 336x280) -->
+                        <div class="ad-container">
+                            <div class="ad-label">Reklam</div>
+                            <ins class="adsbygoogle"
+                                 style="display:inline-block;width:336px;height:280px"
+                                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                                 data-ad-slot="0987654321"></ins>
+                            <script>
+                                 (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <% if (article.tags && article.tags.length > 0) { %>
+                    <div class="article-tags">
+                        <strong><i class="fas fa-tags"></i> Etiketler:</strong>
+                        <% article.tags.forEach(tag => { %>
+                            <a href="#" class="tag">#<%= tag %></a>
+                        <% }); %>
+                    </div>
+                    <% } %>
+                    
+                    <!-- Share Buttons -->
+                    <div class="share-buttons">
+                        <h4 style="margin-bottom: 20px;"><i class="fas fa-share-alt"></i> Paylaş</h4>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= encodeURIComponent('https://hataylim.com/haber/' + article.slug) %>" 
+                           target="_blank" 
+                           class="share-button share-facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?text=<%= encodeURIComponent(article.title) %>&url=<%= encodeURIComponent('https://hataylim.com/haber/' + article.slug) %>" 
+                           target="_blank" 
+                           class="share-button share-twitter">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="https://wa.me/?text=<%= encodeURIComponent(article.title + ' - https://hataylim.com/haber/' + article.slug) %>" 
+                           target="_blank" 
+                           class="share-button share-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<%= encodeURIComponent('https://hataylim.com/haber/' + article.slug) %>" 
+                           target="_blank" 
+                           class="share-button share-linkedin">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Google AdSense - Sidebar Top (Medium Rectangle 300x250) -->
+                <div class="ad-container">
+                    <div class="ad-label">Reklam</div>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:250px"
+                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                         data-ad-slot="1122334455"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                
+                <!-- Related Articles Widget -->
+                <% if (relatedArticles && relatedArticles.length > 0) { %>
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fas fa-newspaper"></i> İlgili Haberler</h3>
+                    <% relatedArticles.forEach(related => { %>
+                        <div class="related-article">
+                            <img src="<%= related.imageUrl %>" alt="<%= related.title %>">
+                            <div class="related-article-content">
+                                <h4><a href="/haber/<%= related.slug %>"><%= related.title %></a></h4>
+                                <div class="related-article-meta">
+                                    <i class="far fa-clock"></i> <%= new Date(related.createdAt).toLocaleDateString('tr-TR') %>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+                <% } %>
+                
+                <!-- Google AdSense - Sidebar Middle (Medium Rectangle 300x250) -->
+                <div class="ad-container">
+                    <div class="ad-label">Reklam</div>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:250px"
+                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                         data-ad-slot="5544332211"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                
+                <!-- Google AdSense - Sidebar Bottom (Skyscraper 160x600) -->
+                <div class="ad-container">
+                    <div class="ad-label">Reklam</div>
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:160px;height:600px"
+                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                         data-ad-slot="6677889900"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="newspaper-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-contact">
+                        <h5><i class="fas fa-building"></i> İletişim - İstanbul</h5>
+                        <p>
+                            Görüntü Gazetecilik Matbaacılık<br>
+                            Karaköy, İstanbul<br>
+                            <i class="fas fa-envelope"></i> info@hataylim.com<br>
+                            <i class="fab fa-whatsapp"></i> +90 552 424 84 48
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-contact">
+                        <h5><i class="fas fa-building"></i> İletişim - Hatay</h5>
+                        <p>
+                            Görüntü Gazetecilik Matbaacılık<br>
+                            İskenderun, Hatay<br>
+                            <i class="fas fa-envelope"></i> goruntumedya@gmail.com<br>
+                            <i class="fab fa-whatsapp"></i> +90 552 424 84 48
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-contact">
+                        <h5><i class="fas fa-university"></i> Banka Bilgileri</h5>
+                        <p>
+                            Erdahan POLAT<br>
+                            VAKIFBANK<br>
+                            IBAN: TR90 0001 5001 5800 7312 5190 86
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hataylım Gazetesi - Tüm hakları saklıdır. | Görüntü Gazetecilik Matbaacılık</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

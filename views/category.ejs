@@ -15,6 +15,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
+    
     <style>
         :root {
             --hataylim-red: #dc3545;
@@ -198,6 +202,22 @@
                 font-size: 2rem;
             }
         }
+        
+        /* Google Ads Styles */
+        .ad-container {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .ad-label {
+            font-size: 0.7rem;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -260,10 +280,25 @@
     
     <!-- Main Content -->
     <div class="container main-content">
+        <!-- Google AdSense - Category Top (Leaderboard 728x90) -->
+        <div class="ad-container">
+            <div class="ad-label">Reklam</div>
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
         <% if (articles && articles.length > 0) { %>
             <div class="row">
+                <!-- Ana İçerik -->
+                <div class="col-lg-9">
+                <div class="row">
                 <% articles.forEach(article => { %>
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-lg-4 col-md-6">
                         <div class="news-card">
                             <img src="<%= article.imageUrl %>" alt="<%= article.title %>" class="news-card-image">
                             <div class="news-card-body">
@@ -280,6 +315,35 @@
                         </div>
                     </div>
                 <% }); %>
+                </div>
+                </div>
+                
+                <!-- Sidebar - Reklam Alanı -->
+                <div class="col-lg-3">
+                    <!-- Google AdSense - Sidebar (Medium Rectangle 300x250) -->
+                    <div class="ad-container mb-4">
+                        <div class="ad-label">Reklam</div>
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:300px;height:250px"
+                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                             data-ad-slot="1122334455"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                    
+                    <!-- Google AdSense - Sidebar 2 (Medium Rectangle 300x250) -->
+                    <div class="ad-container">
+                        <div class="ad-label">Reklam</div>
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:300px;height:250px"
+                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                             data-ad-slot="5544332211"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
             </div>
         <% } else { %>
             <div class="alert alert-info text-center">

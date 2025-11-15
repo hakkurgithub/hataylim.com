@@ -124,7 +124,7 @@ app.get('/haber/:slug', async (req, res) => {
     await article.save();
     
     // İlgili haberler
-    const relatedNews = await Article.find({
+    const relatedArticles = await Article.find({
       category: article.category,
       published: true,
       _id: { $ne: article._id }
@@ -135,7 +135,7 @@ app.get('/haber/:slug', async (req, res) => {
     res.render('article', {
       title: `${article.title} - Hataylım Gazetesi`,
       article,
-      relatedNews
+      relatedArticles
     });
   } catch (error) {
     res.status(500).send('Sunucu hatası: ' + error.message);
