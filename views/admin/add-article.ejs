@@ -385,9 +385,14 @@
             ],
             toolbar: 'undo redo | blocks | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media table | removeformat code fullscreen | help',
             content_style: 'body { font-family: "Times New Roman", Times, serif; font-size: 14pt; line-height: 1.6; }',
-            language: 'tr_TR',
             branding: false,
-            promotion: false
+            promotion: false,
+            // Türkçe dil paketi kaldırıldı (yüklenmiyordu)
+            setup: function(editor) {
+                editor.on('init', function() {
+                    console.log('TinyMCE loaded successfully');
+                });
+            }
         });
         
         // Image Preview Function
