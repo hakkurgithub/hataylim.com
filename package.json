@@ -20,19 +20,20 @@
   "author": "Görüntü Gazetecilik Matbaacılık",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "mongoose": "^8.0.3",
-    "dotenv": "^16.3.1",
-    "multer": "^1.4.5-lts.1",
-    "cors": "^2.8.5",
-    "body-parser": "^1.20.2",
-    "ejs": "^3.1.9",
-    "express-session": "^1.17.3",
     "bcryptjs": "^2.4.3",
-    "slugify": "^1.6.6",
+    "body-parser": "^1.20.2",
+    "connect-mongo": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mongoose": "^8.0.3",
+    "multer": "^1.4.5-lts.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "connect-mongo": "^5.1.0"
+    "slugify": "^1.6.6",
+    "tinymce": "^8.2.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
